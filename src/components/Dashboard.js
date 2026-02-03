@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ApiService from '../services/api';
 
-// Import layouts (we'll create these next)
+// Import layouts
 import CoachLayout from '../layouts/CoachLayout';
 import PlayerLayout from '../layouts/PlayerLayout';
 import NoTeamLayout from '../layouts/NoTeamLayout';
@@ -12,18 +12,8 @@ const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Check authentication
-    if (!ApiService.isAuthenticated()) {
-      navigate('/login');
-      return;
-    }
-
-    // Load user data
-    loadUser();
-  }, [navigate]);
-
-  const loadUser = async () => {
+  // Use useCallback to memoize loadUser function
+  const loadUser = useCallback(async () => {
     try {
       // First, try to get user from localStorage (fast)
       const cachedUser = ApiService.getUser();
@@ -43,7 +33,18 @@ const Dashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [navigate]);
+
+  useEffect(() => {
+    // Check authentication
+    if (!ApiService.isAuthenticated()) {
+      navigate('/login');
+      return;
+    }
+
+    // Load user data
+    loadUser();
+  }, [navigate, loadUser]);
 
   // Loading state
   if (loading) {

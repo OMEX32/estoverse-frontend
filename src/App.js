@@ -8,6 +8,7 @@ import CTASection from './components/CTASection';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
+import Dashboard from './components/Dashboard';
 import './styles/App.css';
 
 // Landing Page Component
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>
