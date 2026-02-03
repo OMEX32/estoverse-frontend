@@ -85,7 +85,7 @@ const Dashboard = () => {
   const renderLayout = () => {
     // COACH or MANAGER → Coach Layout
     if (user.role === 'COACH' || user.role === 'MANAGER') {
-      return <CoachLayout user={user} />;
+      return <CoachLayout user={user} />; 
     }
 
     // PLAYER or ANALYST → Check if they have a team
