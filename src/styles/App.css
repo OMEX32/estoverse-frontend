@@ -23,12 +23,20 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-body);
     background: var(--concrete-dark);
     color: var(--chalk-white);
     overflow-x: hidden;
+    overflow-y: auto;  /* ADD THIS LINE */
     position: relative;
+    min-height: 100vh;  /* ADD THIS LINE */
 }
 
 /* Concrete Texture Overlay */
