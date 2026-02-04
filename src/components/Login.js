@@ -49,7 +49,7 @@ const Login = () => {
       // navigate('/dashboard');
       
       // For now, redirect to home
-      navigate('/');
+      navigate('/dashboard');
       
     } catch (err) {
       setError(err.message || 'Login failed. Please check your credentials.');
